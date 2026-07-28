@@ -66,11 +66,16 @@ class MainActivity : AppCompatActivity() {
         )?.use { cursor ->
             val columnIndex = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME)
             var contactIndex = 0
-            while (cursor.moveToNext() && contactIndex < 5) {
+            while (cursor.moveToNext() && contactIndex < MAX_CONTACTS_NUMBER) {
                 val contactName = cursor.getString(columnIndex)
                 contactsTextViews[contactIndex].text = contactName
                 contactIndex++
             }
         }
+    }
+
+    companion object {
+
+        const val MAX_CONTACTS_NUMBER = 5
     }
 }
