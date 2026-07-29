@@ -1,8 +1,6 @@
 package com.example.contacts
 
 import android.Manifest
-import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -13,12 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var contactsTextViews: List<TextView>
-    private val receiver = Receiver()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +33,6 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.tvContact5)
         )
         checkContactsPermission()
-        val intentFilter = IntentFilter(Intent.ACTION_BATTERY_LOW)
-        registerReceiver(receiver, intentFilter)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        unregisterReceiver(receiver)
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
